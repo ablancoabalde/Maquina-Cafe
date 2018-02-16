@@ -12,18 +12,7 @@ public class Display {
     // Ver
     public final static String MostrarPrecio(int pos) {
 
-        switch (pos) {
-            case 0:
-                return String.valueOf(CargaProductos.lProductos.get(0).getPrecio());
-
-            case 1:
-                return String.valueOf(CargaProductos.lProductos.get(1).getPrecio());
-
-            case 2:
-                return String.valueOf(CargaProductos.lProductos.get(2).getPrecio());
-
-        }
-        return null;
+    return String.valueOf(CargaProductos.lProductos.get(pos).getPrecio());
     }
 
     //CREDITO
@@ -101,12 +90,5 @@ public class Display {
         }
     }
 
-//    public void restore() {
-//        mIni = new Inicio();
-//        mIni.devolucion.setIcon(null);
-//        mIni.preparar.setIcon(null);
-//        Dinero.credito = 0F;
-//        mIni.Jdisplay.setText(null);
-//        mIni.jTcredito.setText(null);
-//    }
+
 }
