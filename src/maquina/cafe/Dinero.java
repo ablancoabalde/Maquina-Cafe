@@ -1,46 +1,46 @@
 package maquina.cafe;
 
-import java.awt.Image;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import static maquina.cafe.Inicio.*;
-
 public class Dinero {
 
+    public static Float credito=0F;
+
+    public static Float devolverCambio(Float pProducto, Float dinero) {
+
+        return dinero-pProducto;
+
+    }
+
+    public static void restCredit() {
+        credito=0F;
+    }
+
+    public static void addDinero(Float valor) {
+
+        credito+=valor;
+
+    }
     
-
-    public static Float credito = 0F;
-    private Float cambio;
-
-    public Float devolverCambio(Float pProducto, Float dinero) {
-
-        return dinero - pProducto;
-
+    public static Float verCredito(){
+        return credito;
     }
+    
+    public static Float devolverPrecio(int pos){
+              switch (pos) {
+            case 0:
+                return CargaProductos.lProductos.get(0).getPrecio();
 
-    public Icon devolverDinero() {
-        Inicio mIni = new Inicio();
+            case 1:
+                return CargaProductos.lProductos.get(1).getPrecio();
 
-        // Windows
-        ImageIcon icono = new ImageIcon("D:\\NeatBeansProjects\\Maquina-Cafe\\src\\com\\moneda.jpg");
-        // Linux
-        //       ImageIcon icono=new ImageIcon("/home/local/DANIELCASTELAO/ablancoabalde/NetBeansProjects/COD/Maquina-Cafe/src/com/moneda.jpg");
-        // Escala la imagen al tamaño de la label
-        Icon icon = new ImageIcon(icono.getImage().getScaledInstance(mIni.devolucion.getWidth(), mIni.devolucion.getHeight(), Image.SCALE_DEFAULT));
-        return icon;
+            case 2:
+                return CargaProductos.lProductos.get(2).getPrecio();
 
-    }
-
-    public void addDinero() {
-        String variable =CreditoJBoX.getSelectedItem().toString();
-        System.out.println(variable);
-        if (CreditoJBoX.getSelectedItem().toString().equalsIgnoreCase("0.5")) {
-            Dinero.credito = Dinero.credito + 0.5f;
-        } else if (CreditoJBoX.getSelectedItem().toString().equalsIgnoreCase("1")) {
-            Dinero.credito = Dinero.credito + 1f;
-        } else {
-            Dinero.credito = Dinero.credito + 2f;
         }
+        return null;
+    }
+    
+    public static Float faltaCredito(Float creditoInt, Float pProducto){
+        return creditoInt - pProducto;
     }
 
 }

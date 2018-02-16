@@ -20,18 +20,15 @@ import javax.swing.JOptionPane;
  */
 public class Inicio extends javax.swing.JFrame {
 
-    // Variable para cargar el producto y trabajar con la lista en el main
-    CargaProductos carga = new CargaProductos();
-    ArrayList<Producto> lProductos = carga.cargar();
-    // Instanciar objeto para trabajar con los metodos de las clases
-    Dinero mDinero = new Dinero();
-    Display mDis = new Display();
-
+    // Variable para cargar el producto y trabajar con la lista en el main 
+//    CargaProductos mCarga= new CargaProductos();
+//    ArrayList<Producto> lProductos=CargaProductos.cargar();
     public Inicio() {
         initComponents();
 
         //Metodo para cargar el azucar inicial en pantalla
-        jTAzucar.setText(mDis.mAzucar());
+        jTAzucar.setText(Display.mAzucar());
+        CargaProductos.cargar();
     }
 
     /**
@@ -149,10 +146,10 @@ public class Inicio extends javax.swing.JFrame {
                                 .addGap(88, 88, 88)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jBChoco)
-                                            .addComponent(jBte, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jBCafe, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jBChoco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jBCafe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jBte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(CreditoJBoX, 0, 142, Short.MAX_VALUE)
@@ -215,47 +212,47 @@ public class Inicio extends javax.swing.JFrame {
 
     private void jBCafeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCafeActionPerformed
         // Café
-        if (Dinero.credito == 0) {
+
+        if (Dinero.verCredito()==0) {
             //Mostrar precio
-            Jdisplay.setText(String.valueOf(lProductos.get(0).getPrecio()));
-        } else if (Dinero.credito < lProductos.get(0).getPrecio()) {
+            Jdisplay.setText(Display.MostrarPrecio(0));
+
+        } else if (Dinero.verCredito()<Dinero.devolverPrecio(0)) {
             // Muestra el dinero que falta para pagar el producto
-            Float falta = Dinero.credito - lProductos.get(0).getPrecio();
-            Jdisplay.setText("Faltan " + falta.toString());
+
+            Jdisplay.setText("Faltan "+String.valueOf(Dinero.devolverCambio(Dinero.verCredito(), Dinero.devolverPrecio(0))));
         } else {
 
-            preparar.setIcon(mDis.insertimg(0));
+            preparar.setIcon(Display.insertimg(0, preparar.getWidth(), preparar.getHeight()));
             Jdisplay.setText("Preparando");
             // Metodo para cambiar la imagen cada 10 segundos, instanciamos variable TimerTask
-            TimerTask timerTask = new TimerTask() {
+            TimerTask timerTask=new TimerTask() {
                 @Override
                 public void run() {
                     // Acción que quiero que se produzca
 
-                    preparar.setIcon(mDis.insertimg(2));
+                   preparar.setIcon(Display.insertimg(2,preparar.getWidth(), preparar.getHeight()));
                     Jdisplay.setText("Retire producto");
                 }
             };
 
             // Aquí se pone en marcha el timer cada segundo. 
-            Timer timer = new Timer();
+            Timer timer=new Timer();
             // Metodo para cambiar la imagen dentro de 0 milisegundos avísame cada 1000 milisegundos 
             timer.scheduleAtFixedRate(timerTask, 10000, 100000000);
 
             //Hacer metodo devolver cambio
-            Float cambio = mDinero.devolverCambio(lProductos.get(0).getPrecio(), Dinero.credito);
-            if (cambio > 0) {
-                Jdisplay.setText("Su cambio es " + String.valueOf(cambio));
-            }
-            Dinero.credito = 0F;
+            Jdisplay.setText("Su cambio es "+String.valueOf(Dinero.devolverCambio(Dinero.devolverPrecio(0), Dinero.verCredito())));
+
+            Dinero.restCredit();
 
         }
     }//GEN-LAST:event_jBCafeActionPerformed
 
     private void jBDevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDevolverActionPerformed
         // Devolver
-        if (Dinero.credito > 0) {
-            devolucion.setIcon(mDinero.devolverDinero());
+        if (Dinero.credito>0) {
+            devolucion.setIcon(Display.imgDevDinero(devolucion.getWidth(), devolucion.getHeight()));
         } else {
             Jdisplay.setText("No hay moneda");
         }
@@ -263,58 +260,75 @@ public class Inicio extends javax.swing.JFrame {
 
     private void jBChocoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBChocoActionPerformed
         // Chocolate
-        if (Dinero.credito == 0) {
+               if (Dinero.verCredito()==0) {
             //Mostrar precio
-            Jdisplay.setText(lProductos.get(1).getPrecio().toString());
-        } else if (Dinero.credito < lProductos.get(1).getPrecio()) {
+            Jdisplay.setText(Display.MostrarPrecio(1));
+
+        } else if (Dinero.verCredito()<Dinero.devolverPrecio(1)) {
             // Muestra el dinero que falta para pagar el producto
-            Float falta = Dinero.credito - lProductos.get(1).getPrecio();
-            Jdisplay.setText("Faltan " + falta.toString());
+
+            Jdisplay.setText("Faltan "+String.valueOf(Dinero.devolverCambio(Dinero.verCredito(), Dinero.devolverPrecio(1))));
         } else {
-            Jdisplay.setText("Retire producto");
+
+            preparar.setIcon(Display.insertimg(0, preparar.getWidth(), preparar.getHeight()));
+            Jdisplay.setText("Preparando");
+            // Metodo para cambiar la imagen cada 10 segundos, instanciamos variable TimerTask
+            TimerTask timerTask=new TimerTask() {
+                @Override
+                public void run() {
+                    // Acción que quiero que se produzca
+
+                    preparar.setIcon(Display.insertimg(2,preparar.getWidth(), preparar.getHeight()));
+                    Jdisplay.setText("Retire producto");
+                }
+            };
+
+            // Aquí se pone en marcha el timer cada segundo. 
+            Timer timer=new Timer();
+            // Metodo para cambiar la imagen dentro de 0 milisegundos avísame cada 1000 milisegundos 
+            timer.scheduleAtFixedRate(timerTask, 10000, 100000000);
+
             //Hacer metodo devolver cambio
-            Float cambio = mDinero.devolverCambio(lProductos.get(1).getPrecio(), Dinero.credito);
-            if (cambio > 0) {
-                Jdisplay.setText("Su cambio es " + String.valueOf(cambio));
-            }
-            Dinero.credito = 0F;
+            Jdisplay.setText("Su cambio es "+String.valueOf(Dinero.devolverCambio(Dinero.devolverPrecio(1), Dinero.verCredito())));
+
+            Dinero.restCredit();
         }
     }//GEN-LAST:event_jBChocoActionPerformed
 
     private void jBteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBteActionPerformed
         // Té
-        if (Dinero.credito == 0) {
+        if (Dinero.credito==0) {
             //Mostrar precio
-            Jdisplay.setText(lProductos.get(2).getPrecio().toString());
-        } else if (Dinero.credito < lProductos.get(2).getPrecio()) {
+            Jdisplay.setText(CargaProductos.lProductos.get(2).getPrecio().toString());
+        } else if (Dinero.credito<CargaProductos.lProductos.get(2).getPrecio()) {
             // Muestra el dinero que falta para pagar el producto
-            Float falta = Dinero.credito - lProductos.get(2).getPrecio();
-            Jdisplay.setText("Faltan " + falta.toString());
+            Float falta=Dinero.credito-CargaProductos.lProductos.get(2).getPrecio();
+            Jdisplay.setText("Faltan "+falta.toString());
         } else {
             Jdisplay.setText("Retire producto");
             //Hacer metodo devolver cambio
-            Float cambio = mDinero.devolverCambio(lProductos.get(2).getPrecio(), Dinero.credito);
-            if (cambio > 0) {
-                Jdisplay.setText("Su cambio es " + String.valueOf(cambio));
+            Float cambio=Dinero.devolverCambio(CargaProductos.lProductos.get(2).getPrecio(), Dinero.credito);
+            if (cambio>0) {
+                Jdisplay.setText("Su cambio es "+String.valueOf(cambio));
             }
-            Dinero.credito = 0F;
+            Dinero.credito=0F;
         }
     }//GEN-LAST:event_jBteActionPerformed
 
     private void jBmenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBmenosActionPerformed
         // - Azucar
         // LLamada al metodo para extraer azucar
-        mDis.tAzucar(1);
+        Display.tAzucar(1);
         // Llamada al metodo para visualizar azucar
-        jTAzucar.setText(mDis.mAzucar());
+        jTAzucar.setText(Display.mAzucar());
     }//GEN-LAST:event_jBmenosActionPerformed
 
     private void jBmasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBmasActionPerformed
         //  + Azucar
         // LLamada al metodo para añadir azucar
-        mDis.tAzucar(0);
+        Display.tAzucar(0);
         // Llamada al metodo para visualizar azucar
-        jTAzucar.setText(mDis.mAzucar());
+        jTAzucar.setText(Display.mAzucar());
     }//GEN-LAST:event_jBmasActionPerformed
 
     private void JdisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JdisplayActionPerformed
@@ -322,22 +336,23 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_JdisplayActionPerformed
 
     private void CreditoJBoXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreditoJBoXActionPerformed
-        // Credito         
-        mDinero.addDinero();
-        jTcredito.setText(String.valueOf(mDis.verCredito()));
+        // Credito       
+        //Float valorCaja=Float.parseFloat(CreditoJBoX.getSelectedItem().toString());
+        Dinero.addDinero(Float.parseFloat(CreditoJBoX.getSelectedItem().toString()));
+        jTcredito.setText(String.valueOf(Display.verCredito()));
 
     }//GEN-LAST:event_CreditoJBoXActionPerformed
     // Metodo que clickas sobre la imagen y borra la imagen y vacia el text label de devolución
     private void devolucionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_devolucionMousePressed
         devolucion.setIcon(null);
-        Dinero.credito = 0F;
+        Dinero.restCredit();
         Jdisplay.setText(null);
         jTcredito.setText(null);
     }//GEN-LAST:event_devolucionMousePressed
 // Metodo que clickas sobre la imagen y borra la imagen
     private void prepararMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prepararMousePressed
         preparar.setIcon(null);
-        Dinero.credito = 0F;
+        Dinero.restCredit();
         Jdisplay.setText(null);
         jTcredito.setText(null);
     }//GEN-LAST:event_prepararMousePressed

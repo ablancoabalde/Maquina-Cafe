@@ -1,6 +1,6 @@
 package maquina.cafe;
 
-public class Producto {
+public class  Producto {
 
     private Float precio;
     private String nombre;
