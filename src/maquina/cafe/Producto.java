@@ -4,12 +4,11 @@ public class Producto {
 
     private Float precio;
     private String nombre;
-    private static Integer azucar;
+    public static Integer azucar=3;
 
     public Producto(Float precio, String nombre) {
         this.precio=precio;
-        this.nombre=nombre;
-        this.azucar=3;
+        this.nombre=nombre;        
     }
 
     public Float getPrecio() {

@@ -20,11 +20,18 @@ import javax.swing.JOptionPane;
  */
 public class Inicio extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Inicio
-     */
+    // Variable para cargar el producto y trabajar con la lista en el main
+    CargaProductos carga = new CargaProductos();
+    ArrayList<Producto> lProductos = carga.cargar();
+    // Instanciar objeto para trabajar con los metodos de las clases
+    Dinero mDinero = new Dinero();
+    Display mDis = new Display();
+
     public Inicio() {
         initComponents();
+
+        //Metodo para cargar el azucar inicial en pantalla
+        jTAzucar.setText(mDis.mAzucar());
     }
 
     /**
@@ -36,68 +43,70 @@ public class Inicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        jBCafe = new javax.swing.JButton();
+        jBChoco = new javax.swing.JButton();
+        jBte = new javax.swing.JButton();
+        jBmas = new javax.swing.JButton();
+        jBmenos = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
-        display = new javax.swing.JTextField();
+        jBDevolver = new javax.swing.JButton();
+        Jdisplay = new javax.swing.JTextField();
         CreditoJBoX = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         preparar = new javax.swing.JLabel();
         devolucion = new javax.swing.JLabel();
+        jTAzucar = new javax.swing.JTextField();
+        jTcredito = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton2.setText("Café");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jBCafe.setText("Café");
+        jBCafe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jBCafeActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Chocolate");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jBChoco.setText("Chocolate");
+        jBChoco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jBChocoActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Té");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jBte.setText("Té");
+        jBte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jBteActionPerformed(evt);
             }
         });
 
-        jButton5.setText("+");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        jBmas.setText("+");
+        jBmas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                jBmasActionPerformed(evt);
             }
         });
 
-        jButton6.setText("-");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        jBmenos.setText("-");
+        jBmenos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                jBmenosActionPerformed(evt);
             }
         });
 
         jLabel1.setText(" Azucar");
 
-        jButton7.setText("Devolver");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        jBDevolver.setText("Devolver");
+        jBDevolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                jBDevolverActionPerformed(evt);
             }
         });
 
-        display.addActionListener(new java.awt.event.ActionListener() {
+        Jdisplay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                displayActionPerformed(evt);
+                JdisplayActionPerformed(evt);
             }
         });
 
@@ -110,6 +119,12 @@ public class Inicio extends javax.swing.JFrame {
 
         jLabel2.setText("  Monedas");
 
+        preparar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                prepararMousePressed(evt);
+            }
+        });
+
         devolucion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 devolucionMousePressed(evt);
@@ -120,205 +135,212 @@ public class Inicio extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(display, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(74, 74, 74)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CreditoJBoX, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(preparar, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButton3)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel2)
+                                .addGap(59, 59, 59))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addComponent(Jdisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(88, 88, 88)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(62, 62, 62)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jButton5)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18))))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(43, 43, 43)
-                                        .addComponent(devolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(jButton7, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addGap(60, 60, 60))
+                                            .addComponent(jBChoco)
+                                            .addComponent(jBte, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jBCafe, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(CreditoJBoX, 0, 142, Short.MAX_VALUE)
+                                        .addGap(18, 18, 18)))))
+                        .addComponent(jTcredito, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(preparar, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jBDevolver, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(devolucion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jBmas)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jBmenos, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTAzucar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(48, 48, 48))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(72, 72, 72)
+                .addGap(46, 46, 46)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(display, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CreditoJBoX, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                    .addComponent(Jdisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CreditoJBoX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTcredito, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jBDevolver, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton3)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton4))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jButton5)
-                                    .addComponent(jButton6))
-                                .addGap(43, 43, 43)))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTAzucar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jBmas)
+                            .addComponent(jBmenos)
+                            .addComponent(jBCafe))
                         .addGap(18, 18, 18)
+                        .addComponent(jBChoco)
+                        .addGap(18, 18, 18)
+                        .addComponent(jBte)
+                        .addGap(16, 16, 16)
                         .addComponent(devolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27))
+                        .addGap(29, 29, 29))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(preparar, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    // Variable para cargar el producto y trabajar con la lista en el main
-
-    CargaProductos carga=new CargaProductos();
-    ArrayList<Producto> lProductos=carga.cargar();
-
-    Dinero mDinero=new Dinero();
 
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jBCafeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCafeActionPerformed
         // Café
-        if (Dinero.credito==0) {
+        if (Dinero.credito == 0) {
             //Mostrar precio
-            display.setText(lProductos.get(0).getPrecio().toString());
-        } else if (Dinero.credito<lProductos.get(0).getPrecio()) {
+            Jdisplay.setText(String.valueOf(lProductos.get(0).getPrecio()));
+        } else if (Dinero.credito < lProductos.get(0).getPrecio()) {
             // Muestra el dinero que falta para pagar el producto
-            Float falta=Dinero.credito-lProductos.get(0).getPrecio();
-            display.setText("Faltan "+falta.toString());
+            Float falta = Dinero.credito - lProductos.get(0).getPrecio();
+            Jdisplay.setText("Faltan " + falta.toString());
         } else {
 
-            preparar.setIcon(carga.insertimg(0));
-            display.setText("Preparando");
+            preparar.setIcon(mDis.insertimg(0));
+            Jdisplay.setText("Preparando");
             // Metodo para cambiar la imagen cada 10 segundos, instanciamos variable TimerTask
-            TimerTask timerTask=new TimerTask() {
+            TimerTask timerTask = new TimerTask() {
+                @Override
                 public void run() {
                     // Acción que quiero que se produzca
-                    preparar.setIcon(carga.insertimg(2));
-                    display.setText("Retire producto");
+
+                    preparar.setIcon(mDis.insertimg(2));
+                    Jdisplay.setText("Retire producto");
                 }
             };
 
             // Aquí se pone en marcha el timer cada segundo. 
-            Timer timer=new Timer();
+            Timer timer = new Timer();
             // Metodo para cambiar la imagen dentro de 0 milisegundos avísame cada 1000 milisegundos 
-            timer.scheduleAtFixedRate(timerTask, 10000, 1000);
+            timer.scheduleAtFixedRate(timerTask, 10000, 100000000);
 
             //Hacer metodo devolver cambio
-            Float cambio=mDinero.devolverCambio(lProductos.get(0).getPrecio(), Dinero.credito);
-            if (cambio>0) {
-                display.setText("Su cambio es "+String.valueOf(cambio));
+            Float cambio = mDinero.devolverCambio(lProductos.get(0).getPrecio(), Dinero.credito);
+            if (cambio > 0) {
+                Jdisplay.setText("Su cambio es " + String.valueOf(cambio));
             }
-            Dinero.credito=0F;
-            
-            
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
+            Dinero.credito = 0F;
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        }
+    }//GEN-LAST:event_jBCafeActionPerformed
+
+    private void jBDevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDevolverActionPerformed
         // Devolver
-        if(Dinero.credito>0){
-          devolucion.setIcon(mDinero.devolverDinero());
-        }else{
-            display.setText("No hay moneda");
+        if (Dinero.credito > 0) {
+            devolucion.setIcon(mDinero.devolverDinero());
+        } else {
+            Jdisplay.setText("No hay moneda");
         }
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_jBDevolverActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jBChocoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBChocoActionPerformed
         // Chocolate
-        if (Dinero.credito==0) {
+        if (Dinero.credito == 0) {
             //Mostrar precio
-            display.setText(lProductos.get(1).getPrecio().toString());
-        } else if (Dinero.credito<lProductos.get(1).getPrecio()) {
+            Jdisplay.setText(lProductos.get(1).getPrecio().toString());
+        } else if (Dinero.credito < lProductos.get(1).getPrecio()) {
             // Muestra el dinero que falta para pagar el producto
-            Float falta=Dinero.credito-lProductos.get(1).getPrecio();
-            display.setText("Faltan "+falta.toString());
+            Float falta = Dinero.credito - lProductos.get(1).getPrecio();
+            Jdisplay.setText("Faltan " + falta.toString());
         } else {
-            display.setText("Retire producto");
+            Jdisplay.setText("Retire producto");
             //Hacer metodo devolver cambio
-            Float cambio=mDinero.devolverCambio(lProductos.get(1).getPrecio(), Dinero.credito);
-            if (cambio>0) {
-                display.setText("Su cambio es "+String.valueOf(cambio));
+            Float cambio = mDinero.devolverCambio(lProductos.get(1).getPrecio(), Dinero.credito);
+            if (cambio > 0) {
+                Jdisplay.setText("Su cambio es " + String.valueOf(cambio));
             }
-            Dinero.credito=0F;
+            Dinero.credito = 0F;
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jBChocoActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jBteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBteActionPerformed
         // Té
-        if (Dinero.credito==0) {
+        if (Dinero.credito == 0) {
             //Mostrar precio
-            display.setText(lProductos.get(2).getPrecio().toString());
-        } else if (Dinero.credito<lProductos.get(2).getPrecio()) {
+            Jdisplay.setText(lProductos.get(2).getPrecio().toString());
+        } else if (Dinero.credito < lProductos.get(2).getPrecio()) {
             // Muestra el dinero que falta para pagar el producto
-            Float falta=Dinero.credito-lProductos.get(2).getPrecio();
-            display.setText("Faltan "+falta.toString());
+            Float falta = Dinero.credito - lProductos.get(2).getPrecio();
+            Jdisplay.setText("Faltan " + falta.toString());
         } else {
-            display.setText("Retire producto");
+            Jdisplay.setText("Retire producto");
             //Hacer metodo devolver cambio
-            Float cambio=mDinero.devolverCambio(lProductos.get(2).getPrecio(), Dinero.credito);
-            if (cambio>0) {
-                display.setText("Su cambio es "+String.valueOf(cambio));
+            Float cambio = mDinero.devolverCambio(lProductos.get(2).getPrecio(), Dinero.credito);
+            if (cambio > 0) {
+                Jdisplay.setText("Su cambio es " + String.valueOf(cambio));
             }
-            Dinero.credito=0F;
+            Dinero.credito = 0F;
         }
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jBteActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void jBmenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBmenosActionPerformed
         // - Azucar
-    }//GEN-LAST:event_jButton6ActionPerformed
+        // LLamada al metodo para extraer azucar
+        mDis.tAzucar(1);
+        // Llamada al metodo para visualizar azucar
+        jTAzucar.setText(mDis.mAzucar());
+    }//GEN-LAST:event_jBmenosActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void jBmasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBmasActionPerformed
         //  + Azucar
-    }//GEN-LAST:event_jButton5ActionPerformed
+        // LLamada al metodo para añadir azucar
+        mDis.tAzucar(0);
+        // Llamada al metodo para visualizar azucar
+        jTAzucar.setText(mDis.mAzucar());
+    }//GEN-LAST:event_jBmasActionPerformed
 
-    private void displayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayActionPerformed
+    private void JdisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JdisplayActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_displayActionPerformed
+    }//GEN-LAST:event_JdisplayActionPerformed
 
     private void CreditoJBoXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreditoJBoXActionPerformed
         // Credito         
-        display.setText(CreditoJBoX.getSelectedItem().toString());
-
-        if (CreditoJBoX.getSelectedItem().toString().equalsIgnoreCase("0.5")) {
-            Dinero.credito=Dinero.credito+0.5f;
-        } else if (CreditoJBoX.getSelectedItem().toString().equalsIgnoreCase("1")) {
-            Dinero.credito=Dinero.credito+1f;
-        } else {
-            Dinero.credito=Dinero.credito+2f;
-        }
+        mDinero.addDinero();
+        jTcredito.setText(String.valueOf(mDis.verCredito()));
 
     }//GEN-LAST:event_CreditoJBoXActionPerformed
-    // Metodo que clickas sobre la imagen y borra la imagen
+    // Metodo que clickas sobre la imagen y borra la imagen y vacia el text label de devolución
     private void devolucionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_devolucionMousePressed
         devolucion.setIcon(null);
-        Dinero.credito=0F;
-        display.setText(null);
+        Dinero.credito = 0F;
+        Jdisplay.setText(null);
+        jTcredito.setText(null);
     }//GEN-LAST:event_devolucionMousePressed
+// Metodo que clickas sobre la imagen y borra la imagen
+    private void prepararMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_prepararMousePressed
+        preparar.setIcon(null);
+        Dinero.credito = 0F;
+        Jdisplay.setText(null);
+        jTcredito.setText(null);
+    }//GEN-LAST:event_prepararMousePressed
 
     /**
      * @param args the command line arguments
@@ -352,22 +374,25 @@ public class Inicio extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Inicio().setVisible(true);
+
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JComboBox<String> CreditoJBoX;
+    public javax.swing.JTextField Jdisplay;
     public javax.swing.JLabel devolucion;
-    private javax.swing.JTextField display;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jBCafe;
+    private javax.swing.JButton jBChoco;
+    private javax.swing.JButton jBDevolver;
+    private javax.swing.JButton jBmas;
+    private javax.swing.JButton jBmenos;
+    private javax.swing.JButton jBte;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextField jTAzucar;
+    public javax.swing.JTextField jTcredito;
     public javax.swing.JLabel preparar;
     // End of variables declaration//GEN-END:variables
 
