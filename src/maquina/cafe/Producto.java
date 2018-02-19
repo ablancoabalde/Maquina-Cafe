@@ -5,7 +5,11 @@ public class  Producto {
     private Float precio;
     private String nombre;
     public static Integer azucar=3;
-
+    /**
+     * 
+     * @param precio
+     * @param nombre 
+     */
     public Producto(Float precio, String nombre) {
         this.precio=precio;
         this.nombre=nombre;        
@@ -30,11 +34,6 @@ public class  Producto {
 
     public void setAzucar(Integer azucar) {
         this.azucar=azucar;
-    }
-
-    @Override
-    public String toString() {
-        return "precio="+precio+", nombre="+nombre+", azucar="+azucar;
     }
 
 }
