@@ -1,39 +1,30 @@
 package maquina.cafe;
 
-public class  Producto {
+public class Producto {
 
     private Float precio;
     private String nombre;
-    public static Integer azucar=3;
+    public static Integer azucar = 3;
+
     /**
-     * 
+     * Constructor del producto
+     *
      * @param precio
-     * @param nombre 
+     * @param nombre
      */
     public Producto(Float precio, String nombre) {
-        this.precio=precio;
-        this.nombre=nombre;        
+        this.precio = precio;
+        this.nombre = nombre;
     }
 
+    /**
+     * Getter del valor precio del producto
+     *
+     * @return Un FLoat con el precio del producto
+     */
     public Float getPrecio() {
         return precio;
 
-    }
-
-    public void setPrecio(Float precio) {
-        this.precio=precio;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre=nombre;
-    }
-
-    public void setAzucar(Integer azucar) {
-        this.azucar=azucar;
     }
 
 }

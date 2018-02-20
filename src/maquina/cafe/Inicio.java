@@ -220,20 +220,20 @@ public class Inicio extends javax.swing.JFrame {
     private void jBCafeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCafeActionPerformed
         // Café
 
-        if (Dinero.CreditoIn()==0) {
+        if (Dinero.CreditoIn() == 0) {
             //Mostrar precio      
             Display.MostrarPrecio(0);
 
-        } else if (Dinero.CreditoIn()<Dinero.devolverPrecio(0)) {
+        } else if (Dinero.CreditoIn() < Dinero.devolverPrecio(0)) {
             // Muestra el dinero que falta para pagar el producto
-            Display.verCambio(0);
+            Display.verDevCredito(0);
 
         } else {
 
             Display.insertimg(0, imgPrep.getWidth(), imgPrep.getHeight());
 
             // Metodo para cambiar la imagen cada 10 segundos, instanciamos variable TimerTask
-            TimerTask timerTask=new TimerTask() {
+            TimerTask timerTask = new TimerTask() {
                 @Override
                 public void run() {
                     // Acción que quiero que se produzca
@@ -243,7 +243,7 @@ public class Inicio extends javax.swing.JFrame {
             };
 
             // Aquí se pone en marcha el timer cada segundo. 
-            Timer timer=new Timer();
+            Timer timer = new Timer();
             // Metodo para cambiar la imagen dentro de 0 milisegundos avísame cada 1000 milisegundos 
             timer.scheduleAtFixedRate(timerTask, 10000, 100000000);
 
@@ -254,6 +254,8 @@ public class Inicio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jBCafeActionPerformed
     /**
+     * Metodo que inserta una imagen en un label en caso de la no hay credito en
+     * la máquina, se le pasa por parametro el dinero y el tamaño del label.
      *
      * @param evt
      */
@@ -268,25 +270,24 @@ public class Inicio extends javax.swing.JFrame {
      * indica cuánto te falta 3º Prepara el producto, te muestra el cambio del
      * producto y restablece a 0 el credito.
      *
-     *
      * @param evt
      */
     private void jBChocoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBChocoActionPerformed
         // Chocolate
-        if (Dinero.CreditoIn()==0) {
+        if (Dinero.CreditoIn() == 0) {
             //Mostrar precio      
             Display.MostrarPrecio(1);
 
-        } else if (Dinero.CreditoIn()<Dinero.devolverPrecio(1)) {
+        } else if (Dinero.CreditoIn() < Dinero.devolverPrecio(1)) {
             // Muestra el dinero que falta para pagar el producto
-            Display.verCambio(1);
+            Display.verDevCredito(1);
 
         } else {
 
             Display.insertimg(0, imgPrep.getWidth(), imgPrep.getHeight());
 
             // Metodo para cambiar la imagen cada 10 segundos, instanciamos variable TimerTask
-            TimerTask timerTask=new TimerTask() {
+            TimerTask timerTask = new TimerTask() {
                 @Override
                 public void run() {
                     // Acción que quiero que se produzca
@@ -296,7 +297,7 @@ public class Inicio extends javax.swing.JFrame {
             };
 
             // Aquí se pone en marcha el timer cada segundo. 
-            Timer timer=new Timer();
+            Timer timer = new Timer();
             // Metodo para cambiar la imagen dentro de 0 milisegundos avísame cada 1000 milisegundos 
             timer.scheduleAtFixedRate(timerTask, 10000, 100000000);
 
@@ -314,25 +315,24 @@ public class Inicio extends javax.swing.JFrame {
      * indica cuánto te falta 3º Prepara el producto, te muestra el cambio del
      * producto y restablece a 0 el credito.
      *
-     *
      * @param evt
      */
     private void jBteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBteActionPerformed
         // Té
-        if (Dinero.CreditoIn()==0) {
+        if (Dinero.CreditoIn() == 0) {
             //Mostrar precio      
             Display.MostrarPrecio(2);
 
-        } else if (Dinero.CreditoIn()<Dinero.devolverPrecio(2)) {
+        } else if (Dinero.CreditoIn() < Dinero.devolverPrecio(2)) {
             // Muestra el dinero que falta para pagar el producto
-            Display.verCambio(2);
+            Display.verDevCredito(2);
 
         } else {
 
             Display.insertimg(0, imgPrep.getWidth(), imgPrep.getHeight());
 
             // Metodo para cambiar la imagen cada 10 segundos, instanciamos variable TimerTask
-            TimerTask timerTask=new TimerTask() {
+            TimerTask timerTask = new TimerTask() {
                 @Override
                 public void run() {
                     // Acción que quiero que se produzca
@@ -342,7 +342,7 @@ public class Inicio extends javax.swing.JFrame {
             };
 
             // Aquí se pone en marcha el timer cada segundo. 
-            Timer timer=new Timer();
+            Timer timer = new Timer();
             // Metodo para cambiar la imagen dentro de 0 milisegundos avísame cada 1000 milisegundos 
             timer.scheduleAtFixedRate(timerTask, 10, 100000000);
 
@@ -352,7 +352,11 @@ public class Inicio extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_jBteActionPerformed
-
+    /**
+     * Metodo que disminuye en 1 la cantidad de azucar y lo muestra
+     *
+     * @param evt
+     */
     private void jBmenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBmenosActionPerformed
         // - Azucar
         // LLamada al metodo para extraer azucar
@@ -361,7 +365,11 @@ public class Inicio extends javax.swing.JFrame {
 
         Display.mAzucar();
     }//GEN-LAST:event_jBmenosActionPerformed
-
+    /**
+     * Metodo que aumenta en 1 la cantidad de azucar y lo muestra
+     *
+     * @param evt
+     */
     private void jBmasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBmasActionPerformed
         //  + Azucar
         // LLamada al metodo para añadir azucar
@@ -373,7 +381,11 @@ public class Inicio extends javax.swing.JFrame {
     private void JdisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JdisplayActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JdisplayActionPerformed
-
+    /**
+     * Metodo añade dinero a la máquina y lo visualiza
+     *
+     * @param evt
+     */
     private void CreditoJBoXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreditoJBoXActionPerformed
         // Credito       
         //Float valorCaja=Float.parseFloat(CreditoJBoX.getSelectedItem().toString());
@@ -382,13 +394,27 @@ public class Inicio extends javax.swing.JFrame {
         //     jTcredito.setText(String.valueOf(Display.CreditoIn()));
 
     }//GEN-LAST:event_CreditoJBoXActionPerformed
-    // Metodo que clickas sobre la imagen y borra la imagen y vacia el text label de devolución
+
+    /**
+     * Metodo que elimina la imagen devolver dinero y restablece a 0 todos los
+     * valores de de los TextField
+     *
+     * @param evt
+     */
+
     private void imgDevMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgDevMousePressed
+        // Metodo que clickas sobre la imagen y borra la imagen y vacia el text label de devolución
         Display.restore();
 
     }//GEN-LAST:event_imgDevMousePressed
-// Metodo que clickas sobre la imagen y borra la imagen
+    /**
+     * Metodo que elimina la imagen preparar producto y restablece a 0 todos los
+     * valores de de los TextField
+     *
+     * @param evt
+     */
     private void imgPrepMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imgPrepMousePressed
+        // Metodo que clickas sobre la imagen y borra la imagen y vacia el text label de devolución
         Display.restore();
     }//GEN-LAST:event_imgPrepMousePressed
 
