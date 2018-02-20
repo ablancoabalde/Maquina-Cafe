@@ -5,6 +5,8 @@
  */
 package maquina.cafe;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.ImageIcon;
@@ -54,6 +56,7 @@ public class Inicio extends javax.swing.JFrame {
         jTcredito = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
 
         jBCafe.setText("Café");
         jBCafe.addActionListener(new java.awt.event.ActionListener() {
@@ -476,4 +479,16 @@ public class Inicio extends javax.swing.JFrame {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Metodo sustituir el icono del Jframe
+     *
+     * @return Una Image al sistema
+     */
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().
+                getImage(ClassLoader.getSystemResource("com/taza.png"));
+
+        return retValue;
+    }
 }
